@@ -1,99 +1,73 @@
 import React from "react";
-import { pitch } from "../../assets";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+
+import { idea } from "../../assets";
 
 const LogIn = () => {
- const {
-  register,
-  handleSubmit,
-  watch,
-  formState : {errors}
- } =useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-const onSubmit = async (data) => {
-  console.log(data);
-}
+  const onSubmit = async (data) => {
+    console.log(data);
+  };
 
   return (
-    <div
-      className="relative flex items-center justify-center h-screen w-screen bg-cover bg-center overflow-hidden overflow-y-hidden"
-      style={{ backgroundImage: `url(${pitch})` }}
-    >
-      <div className="absolute inset-0 bg-black opacity-65"></div>
-      <div className="relative flex shadow-lg bg-white bg-opacity-30 p-8 rounded-lg">
-        <div>
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center text-xl font-serif">
-            <div className="mx-8">
-              <div className="mb-6 text-center">
-                <h1 className="text-4xl font-bold ">Login</h1>
-                <p className="text-sm text-gray-200 mt-3">
-                  Welcome back! Please sign in to continue
-                </p>
-              </div>
-
-              <label htmlFor="email" className="block text-black mb-1 ml-4">
-                Email/Username
-              </label>
-              <input
-                type="text"
-                id="email"
-                placeholder="email/username"
-                className="bg-slate-300 h-10 w-full px-2 py-1 border-gray-400 border-2 rounded-lg mb-4"
-                {
-                  ...register("email", { required: "email is not provided" })
-                  }
-              />
-                {errors.email && (<p className="text-red-500 italic">{errors.email.message}</p>)}
-
-              <label htmlFor="password" className="block text-black mb-1 ml-4">
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                placeholder="password"
-                className="bg-slate-300 h-10 w-full px-2 py-1 border-gray-400 border-2 rounded-lg mb-6"
-                {
-                  ...register("password", { required: "provide password" })
-                  }
-              />
-                {errors.password && (<p className="text-red-500 italic">{errors.password.message}</p>)}
-
-              <div className="flex items-center justify-between w-full mb-6">
-                <label className="flex items-center text-black text-sm">
-                  <input type="checkbox" className="mr-2" />
-                  Remember me
-                </label>
-                <a
-                  href="/forgot-password"
-                  className="text-blue-400 text-sm hover:text-blue-300 hover:underline"
-                >
-                  Forgot password?
-                </a>
-              </div>
-
-              <div className="flex justify-center mb-6">
-                <button
-                  type="submit"
-                  className="text-center text-white py-2 px-4 bg-blue-500 border-2 border-blue-500 rounded-3xl hover:bg-blue-700"
-                >
-                  Login
-                </button>
-              </div>
-
-              <div className="text-center text-white">
-                <p>
-                  Don't have an account?{" "}
-                  <a
-                    href="/signup"
-                    className="text-blue-400 hover:text-blue-300 hover:underline"
-                  >
-                    Sign up
-                  </a>
-                </p>
-              </div>
-            </div>
+    <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="flex bg-white rounded-lg shadow-lg overflow-hidden w-4/5 max-w-4xl">
+        
+        <div className="w-2/5">
+          <img
+            src={idea} 
+            alt="Login Illustration"
+            className="h-full w-full object-cover"
+          />
+        </div>
+        
+        <div className="w-3/5 p-8">
+          <h2 className="text-3xl font-bold text-green-900 mb-8 text-center">Sign In</h2>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <input
+              type="text"
+              id="email"
+              placeholder="Enter your email or username"
+              className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white text-gray-800 focus:outline-none focus:border-green-500"
+              {...register("email", { required: "Email is not provided" })}
+            />
+            {errors.email && (
+              <p className="text-red-500 italic">{errors.email.message}</p>
+            )}
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white text-gray-800 focus:outline-none focus:border-green-500"
+              {...register("password", { required: "Provide password" })}
+            />
+            {errors.password && (
+              <p className="text-red-500 italic">{errors.password.message}</p>
+            )}
+            <button
+              type="submit"
+              className="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition duration-300"
+            >
+              Login
+            </button>
           </form>
+          <div className="mt-4 text-center">
+            <p className="text-gray-800">
+              Don't have an account?{" "}
+              <Link
+                to="/signup"
+                className="text-green-500 hover:text-green-700 hover:underline"
+              >
+                Sign up
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

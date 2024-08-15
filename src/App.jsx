@@ -7,38 +7,51 @@ import LogIn from "./pages/auth/logIn";
 import SignUp from "./pages/auth/signUp";
 import DashboardLayout from "./pages/dashboard/layouts";
 
+import PitchList from "./pages/pitchList";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        element: <Landing />,
+      },
+      // {
+      //   path: "about",
+      //   element: <About/>,
+      // },
+      {
+        path: "pitch-list",
+        element: <PitchList/>,
+      },
+      
+    ],
+  },
+
+  {
+    path: "login",
+    element: <LogIn />,
+  },
+  {
+    path: "signup",
+    element: <SignUp />,
+  },
+
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        index: true,
+        
+      }
+    ]
+  },
+]);
+
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <RootLayout />,
-      children: [
-        {
-          index: true,
-          element: <Landing />,
-        },
-      ],
-    },
-
-    
-      
-        {
-          path: "login",
-          element: <LogIn />,
-        },
-        {
-          path: "signup",
-          element: <SignUp />,
-        },
-      
-    
-
-    {
-      path: "/dashboard",
-      element: <DashboardLayout />,
-    },
-  ]);
-
   return (
     <>
       <RouterProvider router={router} />

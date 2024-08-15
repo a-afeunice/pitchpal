@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { pitch } from "../../assets";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { idea } from "../../assets";
 
 const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [usernameAvailable, setUsernameAvailable] = useState(false);
 
   const {
     register,
@@ -13,151 +13,173 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit =() => 
-    console.log(data)
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
-    <div
-      className="relative flex items-center justify-center h-screen w-screen bg-cover bg-center overflow-hidden overflow-y-hidden"
-      style={{ backgroundImage: `url(${pitch})` }}
-    >
-      <div className="absolute inset-0 bg-black opacity-65"></div>
-      <div className="relative flex shadow-lg bg-white bg-opacity-30 p-8 rounded-lg">
-        <div>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex place-content-center items-center font-serif"
-          >
-            <div className="mx-8">
-              <div className="mb-6 text-center">
-                <h1 className="text-2xl font-bold">SIGN UP</h1>
-              </div>
-              <div>
-                <div className="grid grid-cols-2 gap-8 ">
-                  <div>
-                    <label htmlFor="" className="block text-black mb-1 ml-4">
-                      Firstname
-                    </label>
-                    <input
-                      type="text"
-                      id="firstName"
-                      placeholder="firstname"
-                      className="bg-slate-300 h-10 w-full px-2 py-1 border-gray-400 border-2 rounded-lg mb-4"
-                      {...register("firstName", {
-                        required: "First name is required",
-                        minLength: {
-                          value: 2,
-                          message: "length must be more than 2 characters",
-                        },
-                      })}
-                    />
-                    <label htmlFor="" className="block text-black mb-1 ml-4">
-                      Lastname
-                    </label>
-                    <input
-                      type="text"
-                      id="lastName"
-                      placeholder="lastname"
-                      className="bg-slate-300 h-10 w-full px-2 py-1 border-gray-400 border-2 rounded-lg mb-4"
-                      {...register("lastName", {
-                        required: "Last name is required",
-                        minLength: {
-                          value: 2,
-                          message: "length must be more than 2 characters",
-                        },
-                      })}
-                    />
-                    <label
-                      htmlFor="email"
-                      className="block text-black mb-1 ml-4"
-                    >
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      placeholder="email"
-                      className="bg-slate-300 h-10 w-full px-2 py-1 border-gray-400 border-2 rounded-lg mb-4"
-                      {...register("email", { required: "Email is required" })}
-                    />
-                    {errors.email && (<p className="text-red-500 italic">{errors.email.message}</p>)}
-                  </div>
-                  <div>
-                    <label htmlFor="" className="block text-black mb-1 ml-4">
-                      Role
-                    </label>
-                    <select
-                      id="role"
-                      className="bg-slate-300 h-10 w-full px-2 py-1 border-gray-400 border-2 rounded-lg mb-4"
-                    >
-                      <option>Entrepreneur</option>
-                      <option>Investor</option>
-                    </select>
-                    <label
-                      htmlFor="username"
-                      className="block text-black mb-1 ml-4"
-                    >
-                      Username
-                    </label>
-                    <input
-                      type="text"
-                      id="username"
-                      placeholder="username"
-                      className="bg-slate-300 h-10 w-full px-2 py-1 border-gray-400 border-2 rounded-lg mb-4"
-                      {...register("username", {
-                        required: "Username is required",
-                        minLength: {
-                          value: 3,
-                          message:
-                            "Username length must be more than 3 characters",
-                        },
-                      })}
-                    />
-                    {errors.username && (<p className="text-red-500 italic">{errors.username.message}</p>)}
-                    <label
-                      htmlFor="password"
-                      className="block text-black mb-1 ml-4"
-                    >
-                      Password
-                    </label>
-                    <input
-                      type="password"
-                      id="password"
-                      placeholder="password"
-                      className="bg-slate-300 h-10 w-full px-2 py-1 border-gray-400 border-2 rounded-lg mb-6"
-                      {...register("password", {
-                        required: "Password is required",
-                        minLength: {
-                          value: 8,
-                          message:
-                            "Password length must be more than 8 characters",
-                        },
-                      })}
-                    />
-                     {errors.password && (<p className="text-red-500 italic">{errors.password.message}</p>)}
-                  </div>
-                </div>
-              </div>
+    <div className="flex justify-center items-center min-h-screen bg-white">
+      <div className="flex shadow-lg bg-white w-4/5 max-w-3xl rounded-lg overflow-hidden">
+        {/* Left Image Section */}
+        <div className="hidden md:flex w-2/5">
+          <img
+            src={idea}
+            alt="Sign Up"
+            className="h-full w-full object-cover"
+          />
+        </div>
+        {/* Right Form Section */}
+        <div className="p-8 bg-white flex flex-col justify-center w-full md:w-3/5">
+          <div className="text-center mb-4">
+            <h1 className="text-2xl font-bold text-green-900">Sign Up</h1>
+          </div>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <div className="flex space-x-4">
+              <input
+                type="text"
+                id="firstName"
+                placeholder="First Name"
+                className="w-1/2 bg-gray-100 border border-gray-300 text-gray-800 rounded-lg h-10 px-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+                {...register("firstName", {
+                  required: "First name is required",
+                  minLength: {
+                    value: 2,
+                    message: "Length must be more than 2 characters",
+                  },
+                })}
+              />
+              <input
+                type="text"
+                id="lastName"
+                placeholder="Last Name"
+                className="w-1/2 bg-gray-100 border border-gray-300 text-gray-800 rounded-lg h-10 px-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+                {...register("lastName", {
+                  required: "Last name is required",
+                  minLength: {
+                    value: 2,
+                    message: "Length must be more than 2 characters",
+                  },
+                })}
+              />
+            </div>
+            {errors.firstName && (
+              <p className="text-red-500 text-sm">{errors.firstName.message}</p>
+            )}
+            {errors.lastName && (
+              <p className="text-red-500 text-sm">{errors.lastName.message}</p>
+            )}
 
-              <div className="flex justify-center mb-6">
-                <button
-                  type="submit"
-                  className="text-center text-white py-2 px-4 bg-blue-500 border-2 border-blue-500 rounded-3xl hover:bg-blue-700"
-                >
-                  Sign up
-                </button>
-              </div>
+            <input
+              type="email"
+              id="email"
+              placeholder="Email"
+              className="w-full bg-gray-100 border border-gray-300 text-gray-800 rounded-lg h-10 px-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+              {...register("email", { required: "Email is required" })}
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
 
-              <div className="text-center text-white">
-                <p>
-                  Already have an account?{" "}
-                  <a
-                    href="/login"
-                    className="text-blue-400 hover:text-blue-300 hover:underline"
-                  >
-                    Sign in
-                  </a>
-                </p>
-              </div>
+            <div className="flex space-x-4">
+              <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                className="w-1/2 bg-gray-100 border border-gray-300 text-gray-800 rounded-lg h-10 px-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 8,
+                    message: "Password length must be more than 8 characters",
+                  },
+                })}
+              />
+              <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm Password"
+                className="w-1/2 bg-gray-100 border border-gray-300 text-gray-800 rounded-lg h-10 px-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+                {...register("confirmPassword", {
+                  required: "Please confirm your password",
+                  validate: (value) =>
+                    value === watch("password") || "Passwords do not match",
+                })}
+              />
+            </div>
+            {errors.password && (
+              <p className="text-red-500 text-sm">{errors.password.message}</p>
+            )}
+            {errors.confirmPassword && (
+              <p className="text-red-500 text-sm">
+                {errors.confirmPassword.message}
+              </p>
+            )}
+
+            <input
+              type="text"
+              id="username"
+              placeholder="Username"
+              className="w-full bg-gray-100 border border-gray-300 text-gray-800 rounded-lg h-12 px-4 focus:outline-none focus:ring-2 focus:ring-green-500"
+              {...register("username", {
+                required: "Username is required",
+                minLength: {
+                  value: 3,
+                  message: "Username length must be more than 3 characters",
+                },
+              })}
+            />
+            {errors.username && (
+              <p className="text-red-500 text-sm">{errors.username.message}</p>
+            )}
+            {errors.username && (
+              <p className="text-red-500 text-sm">{errors.username.message}</p>
+            )}
+
+            <select
+              id="role"
+              className="w-full bg-gray-100 border border-gray-300 text-gray-800 rounded-lg h-10 px-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+              {...register("role", { required: "Role is required" })}
+            >
+              <option value="">Select Role</option>
+              <option value="entrepreneur">Entrepreneur</option>
+              <option value="investor">Investor</option>
+            </select>
+            {errors.role && (
+              <p className="text-red-500 text-sm">{errors.role.message}</p>
+            )}
+
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="terms"
+                className="h-4 w-4 text-green-500 focus:ring-green-500 border-gray-300 rounded"
+                {...register("terms", {
+                  required: "You must accept the terms",
+                })}
+              />
+              <label
+                htmlFor="terms"
+                className="ml-2 text-gray-800 text-sm cursor-pointer"
+              >
+                I agree to the Terms of Use
+              </label>
+            </div>
+            {errors.terms && (
+              <p className="text-red-500 text-sm">{errors.terms.message}</p>
+            )}
+
+            <button
+              type="submit"
+              className="w-full bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition duration-200"
+            >
+              Sign Up
+            </button>
+
+            <div className="text-center text-sm text-gray-800 mt-2">
+              Already have an account?{" "}
+              <Link to="/login" className="text-green-500 hover:underline">
+                Sign in
+              </Link>
             </div>
           </form>
         </div>
