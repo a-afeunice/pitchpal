@@ -4,9 +4,11 @@ import { Outlet } from 'react-router-dom'
 
 const DashboardLayout = () => {
   return (
-   <div>
+   <div className='flex'>
     <Sidebar/>
-    <Outlet/>
+   <div className='w-full'>
+   <Outlet/>
+   </div>
    </div>
   )
 }

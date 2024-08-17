@@ -8,6 +8,12 @@ import SignUp from "./pages/auth/signUp";
 import DashboardLayout from "./pages/dashboard/layouts";
 
 import PitchList from "./pages/pitchList";
+import Overview from "./pages/dashboard/pages/overview";
+import Pitches from "./pages/dashboard/pages/pitches";
+import AddPitches from "./pages/dashboard/pages/addPitches";
+import Analytics from "./pages/dashboard/pages/analytics";
+import Profile from "./pages/dashboard/pages/profile";
+import Settings from "./pages/dashboard/pages/settings";
 
 const router = createBrowserRouter([
   {
@@ -45,8 +51,28 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        
-      }
+        element: <Overview/>
+      },
+      {
+        path : "pitches",
+        element : <Pitches/>
+      },
+      {
+        path : "pitches/add",
+        element : <AddPitches/>
+      },
+      {
+        path : "analytics",
+        element : <Analytics/>
+      },
+      {
+        path : "profile",
+        element : <Profile/>
+      },
+      {
+        path : "settings",
+        element : <Settings/>
+      },
     ]
   },
 ]);

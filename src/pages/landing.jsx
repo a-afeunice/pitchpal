@@ -3,14 +3,15 @@ import "../App.css";
 import { Link } from "react-router-dom";
 import Resources from "../components/resources";
 import ProgramsSection from "../components/programsSection";
+import PitchesSec from "../components/pitchesSec";
 
 const Landing = () => {
   return (
     <>
       <div className="bgImage">
-        <div className="overlay flex flex-col justify-center items-start ">
+        <div className="overlay flex flex-col justify-center items-center ">
           <h1 className="text-5xl font-bold text-white mt-20 ml-6 ">
-            No idea is too small{" "}
+            No <span className="uppercase  font-extrabold text-green-600">idea</span> is too small{" "}
           </h1>
           <br />
           <p className="text-5xl font-bold text-white ml-6">
@@ -18,7 +19,7 @@ const Landing = () => {
             Let's build it together
           </p>
           <Link to="/signup">
-            <button className="ml-14 mt-10 px-6 py-3 bg-green-500 text-white font-bold rounded-lg">
+            <button className="ml-14 mt-10 px-6 py-3 bg-green-700 text-white font-bold rounded-lg">
               Get started
             </button>
           </Link>
@@ -61,7 +62,9 @@ const Landing = () => {
       </div>
     </div>
 
-      {/* <div>pitches</div> */}
+       <div>
+        <PitchesSec/>
+        </div> 
 
       <div id="resources">
         <Resources/>

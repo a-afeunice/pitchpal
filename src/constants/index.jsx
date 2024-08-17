@@ -1,4 +1,4 @@
-import { Award, ChartLine, Layers, LayoutDashboard, PackageSearch, Target, Users } from "lucide-react";
+import {  Briefcase, ChartBar, LayoutDashboard, Megaphone, Settings, User,} from "lucide-react";
 
 const K = {
 NAVLINKS: [
@@ -8,36 +8,26 @@ NAVLINKS: [
         link: "/dashboard"
     },
     {
-        icon: <PackageSearch/>,
-        text: "Product Highlight",
-        link: "/dashboard/product"
-    },
-   
-    {
-        icon: <Target/>,
-        text: "Market",
-        link: "/dashboard/market"
+        icon: <Briefcase/>,
+        text: "Pitches",
+        link: "/dashboard/pitches"
     },
     {
-        icon: <Layers/>,
-        text: "Business Model",
-        link: "/dashboard/business"
+        icon:<ChartBar/>,
+        text: "Analytics",
+        link: "/dashboard/analytics"
     },
     {
-        icon: <Award/>,
-        text: "Achievements",
-        link: "/dashboard/achievements"
+        icon: <User/>,
+        text: "Profile",
+        link: "/dashboard/profile"
     },
     {
-        icon: <ChartLine/>,
-        text: "Financials",
-        link: "/dashboard/financials"
+        icon: <Settings/>,
+        text: "Settings",
+        link: "/dashboard/settings"
     },
-    {
-        icon: <Users/>,
-        text: "Team",
-        link: "/dashboard/team"
-    },
+    
 ]
 };
 

@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { idea } from "../../assets";
+import { apiRegister } from "../../services/auth";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+ 
+  const navigate = useNavigate()
 
   const {
     register,
@@ -13,14 +17,53 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+ 
+
+  const userNameWatch = watch("userName")
+  console.log(userNameWatch);
+
+  useEffect(() => {
+    // const debouncedSearch = debounce(async () => {
+    //   if (userNameWatch) {
+    //     await checkUsername(userNameWatch)
+    //   }
+    
+    // }, 1000)
+    // debouncedSearch()
+    // return () => {
+    //   debouncedSearch.cancel();
+    // }
+  }, [userNameWatch]);
+
+  const onSubmit = async (data) => {
     console.log(data);
+    setIsSubmitting(true)
+    let payload = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: data.password,
+      
+      username: data.username,
+      role: data.role,
+    };
+  try {
+    const res = await apiRegister(payload);
+    console.log(res.data)
+    toast.success(res.data.message)
+    navigate("/login");
+   } catch (error) {
+    console.log(error)
+    toast.error("An error occurred!")
+   } finally {
+    setIsSubmitting(false)
+   }
   };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-white">
       <div className="flex shadow-lg bg-white w-4/5 max-w-3xl rounded-lg overflow-hidden">
-        {/* Left Image Section */}
+        
         <div className="hidden md:flex w-2/5">
           <img
             src={idea}
@@ -28,7 +71,7 @@ const SignUp = () => {
             className="h-full w-full object-cover"
           />
         </div>
-        {/* Right Form Section */}
+        
         <div className="p-8 bg-white flex flex-col justify-center w-full md:w-3/5">
           <div className="text-center mb-4">
             <h1 className="text-2xl font-bold text-green-900">Sign Up</h1>
@@ -94,26 +137,12 @@ const SignUp = () => {
                   },
                 })}
               />
-              <input
-                type="password"
-                id="confirmPassword"
-                placeholder="Confirm Password"
-                className="w-1/2 bg-gray-100 border border-gray-300 text-gray-800 rounded-lg h-10 px-3 focus:outline-none focus:ring-2 focus:ring-green-500"
-                {...register("confirmPassword", {
-                  required: "Please confirm your password",
-                  validate: (value) =>
-                    value === watch("password") || "Passwords do not match",
-                })}
-              />
+             
             </div>
             {errors.password && (
               <p className="text-red-500 text-sm">{errors.password.message}</p>
             )}
-            {errors.confirmPassword && (
-              <p className="text-red-500 text-sm">
-                {errors.confirmPassword.message}
-              </p>
-            )}
+           
 
             <input
               type="text"
@@ -131,9 +160,7 @@ const SignUp = () => {
             {errors.username && (
               <p className="text-red-500 text-sm">{errors.username.message}</p>
             )}
-            {errors.username && (
-              <p className="text-red-500 text-sm">{errors.username.message}</p>
-            )}
+           
 
             <select
               id="role"
@@ -168,12 +195,16 @@ const SignUp = () => {
               <p className="text-red-500 text-sm">{errors.terms.message}</p>
             )}
 
+            <div className="flex text-center">
+            <div  className="w-full bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition duration-200">
             <button
               type="submit"
-              className="w-full bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition duration-200"
+             
             >
-              Sign Up
+             {isSubmitting ? "Submitting..." : "Sign Up"}
             </button>
+            </div>
+            </div>
 
             <div className="text-center text-sm text-gray-800 mt-2">
               Already have an account?{" "}

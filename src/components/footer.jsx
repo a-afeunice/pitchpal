@@ -2,17 +2,17 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <div className="bg-[#082D04] text-white py-10">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div className="text-center md:text-left">
+    <div className="bg-green-700 text-white py-10">
+      <div className="container mx-auto gap-2 flex flex-col items-center">
+        <div className="text-center ">
           <h2 className="text-2xl font-bold">PitchPal</h2>
-          <p className="mt-3 text-gray-400">
+          <p className="mt-5 text-gray-400 ">
             Connecting Entrepreneurs and Investors
           </p>
         </div>
-        <div className="flex flex-col items-center md:items-end text-sm">
-          <p className="text-gray-400">© {new Date().getFullYear()} PitchPal.</p>
-          <p className="text-gray-400">All Rights Reserved.</p>
+        <div className="flex items-center text-sm">
+          <p className="text-gray-400">© {new Date().getFullYear()} PitchPal.All Rights Reserved</p>
+         
         </div>
       </div>
     </div>
