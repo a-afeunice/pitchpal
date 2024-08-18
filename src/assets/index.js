@@ -12,5 +12,9 @@ import bulb from "./images/bulb.jpg"
 import tech from "./images/tech.jpg"
 import energy from "./images/energy.jpg"
 import health from "./images/health.jpg"
+import elearn from "./images/elearn.jpg"
+import nurse from "./images/nurse.jpg"
+import wheat from "./images/wheat.jpg"
+import cyber from "./images/cyber.jpg"
 
-export{pitch,background,idea, edu, finance, doc, farm, coin, bg, profile, bulb, tech, energy, health}
+export{pitch,background,idea, edu, finance, doc, farm, coin, bg, profile, bulb, tech, energy, health, elearn, nurse, wheat, cyber}

@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <nav className="bg-green-700 shadow-md w-full  h-14 place-content-center">
       <div className="flex justify-between">
-        <div className="flex  ml-12">
+      <div className="flex  ml-12">
           <h1 className="text-2xl font-semibold text-white">PitchPal</h1>
           <p className="text-3xl  font-extrabold text-green-900">.</p>
         </div>

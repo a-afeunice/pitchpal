@@ -1,9 +1,23 @@
 import React from 'react';
 import { LogOut } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import K from '../constants';
+import { apiLogout } from '../services/auth';
+import { toast } from 'react-toastify';
 
 const Sidebar = () => {
+const navigate = useNavigate();
+
+  const logout = async () => {
+    try {
+      await apiLogout();
+      toast.success("Logged out successfully")
+      navigate("/login");
+    } catch (error) {
+      toast.error("An error occurred!")
+      
+    }
+  }
   return (
     <div className="w-64 bg-gradient-to-r from-green-700 via-green-600 to-green-500 min-h-screen flex flex-col shadow-lg">
       <div className="p-4 flex flex-col flex-grow">
@@ -29,6 +43,7 @@ const Sidebar = () => {
       <div className="p-4 mt-auto">
         <button
           className="flex gap-x-4 items-center shadow-xl bg-green-600 text-white hover:bg-green-600 rounded-lg p-2 transition duration-300"
+          onClick={logout}
         >
           <span className="text-white p-2 rounded-full">
             <LogOut />

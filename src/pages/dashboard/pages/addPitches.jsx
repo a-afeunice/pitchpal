@@ -50,7 +50,7 @@ const AddPitches = () => {
                 id="video"
                 accept="video/*"
                 {...register("video", { required: "Video file is required" })}
-                className="h-10 w-full px-2 py-1 border-black border-2 rounded-lg mb-4"
+                className="h-11 w-full py-2 border-black border-2 rounded-lg mb-4"
               />
               {errors.video && <p className="text-red-500 text-sm ml-4">{errors.video.message}</p>}
 

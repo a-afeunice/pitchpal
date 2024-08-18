@@ -26,7 +26,7 @@ const pitchesData = [
     status: 'Approved',
     
   },
-  // Add more pitch data here
+  
 ];
 
 const PitchesSec= () => {
